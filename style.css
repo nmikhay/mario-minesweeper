@@ -1,0 +1,166 @@
+
+body {
+    height: 100%;
+    background-size: cover;
+    height: fit-content;
+}
+
+.bg{
+    background-image: url('mario.png');
+    height: 100%;
+    background-size: cover;
+    height: fit-content;
+}
+
+h1, .button, .lost, .won {
+    font-family: 'Super Mario Bros', cursive;
+}
+
+.sectionHeading {
+    text-align: center;
+    color: rgb(243, 113, 53);
+    font-size: 3em;
+    text-shadow: 2px 2px #ff0000;
+}
+
+.gameContainer {
+    border: 10px solid #ffd800;
+    margin: 0 auto;
+    width: 400px;
+    height: 400px;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    position: relative;
+}
+
+.gameContainer div {
+    border: 1px solid #ffd800;
+    /* background-color: #00bfff; */
+    font-size: 2em;
+    text-align: center;
+    width: 38px;
+    height: 38px;
+    align-self: center;
+}
+.gameContainer  .checked div {
+    background-color: #4e9bb4;
+}
+.bomb {
+    /* background-image: url('https://www.mariowiki.com/images/thumb/2/2e/GoombaNSMBUDeluxe.png/250px-GoombaNSMBUDeluxe.png'); */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+.result {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.button {
+    background-color: #ffd800;
+    color: black;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 1.5em;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+.lost {
+    color: rgb(255, 0, 0);
+    font-size: 34px;
+    text-shadow: 2px 2px #ffffff;
+}
+
+.won {
+    color: #196819;
+    font-size: 34px;
+    text-shadow: 2px 2px #ffffff;
+}
+
+.timeOver{
+    font-family: 'Super Mario Bros', cursive;
+    color: rgb(255, 0, 0);
+    font-size: 44px;
+    text-shadow: 2px 2px #ffffff;
+}
+.hidden{
+  
+    display:none;
+}
+
+.time-remaining {
+    text-align: center;
+    color: rgb(255, 0, 0);
+    font-size: 24px;
+    text-shadow: 2px 2px #ffffff;
+}
+
+.luigi {
+    float: bottom;
+    width: 100px;
+    
+}
+.mariobro {
+    float: bottom;
+    width: 130px;
+
+}
+
+.score {
+    font-family: 'Super Mario Bros', cursive;
+}
+
+
+#score {
+    /* background-image: url('https://www.mariowiki.com/images/thumb/9/9f/Coin_%28Mario_Party_10%29.png/200px-Coin_%28Mario_Party_10%29.png'); */
+    background-size: contain;
+    background-repeat: no-repeat;
+    padding-left: 30px;
+    font-size: 28px;
+    color: #ffd800;
+}
+
+#time {
+    font-size: 28px;
+    font-family: 'Super Mario Bros', cursive;
+    color: #ff0000;
+    text-shadow: 2px 2px #f7f7f7;
+    padding-top: 30px;
+    padding-left: 20px;
+
+}
+
+.bottom-container {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    margin: auto;
+    /* margin-left: 200px; */
+    /* position: absolute;
+    bottom: 0;
+    left: 0;
+    margin-left: 80px; */
+}
+
+.bottom-container img {
+    width: 100px;
+    height: auto;
+    margin-right: 10px;
+}
+
+img {
+    width: 50px;
+    height: auto;
+  }
+
+h3{
+    color: rgb(233, 0, 0);
+    font-size: 26px;
+    font-family: 'Super Mario Bros', cursive;
+    margin-top: 20px;
+    text-shadow: 2px 2px #f7f7f7;
+}
