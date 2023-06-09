@@ -1,21 +1,25 @@
 {
   "name": "mario-minesweeper",
   "version": "1.0.0",
-  "description": "Minesweeper Game",
+  "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "http-server"
-  },
-  "dependencies": {
-    "http-server": "^0.12.3"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "your-build-command-here",
+    "start": "your-start-command-here",
+    "serve": "npx serve -s -l 3000"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/nmikhay/mario-minesweeper.git"
+    "url": "git+https://github.com/nmikhay/mario-minesweeper.git"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/nmikhay/mario-minesweeper/issues"
   },
   "homepage": "https://github.com/nmikhay/mario-minesweeper#readme"
 }
+
 

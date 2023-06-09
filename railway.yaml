@@ -1,5 +1,5 @@
 env: node
 previewCommand: npm install
 buildCommand: npm run build
-startCommand: npm start
+startCommand: npm run serve
 
