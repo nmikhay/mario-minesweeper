@@ -3,6 +3,12 @@ body {
     height: 100%;
     background-size: cover;
     height: fit-content;
+    font-family: 'Super Mario Bros', cursive;
+}
+.conatiner{
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
 }
 
 .bg{
@@ -10,48 +16,46 @@ body {
     height: 100%;
     background-size: cover;
     height: fit-content;
-}
-
-h1, .button, .lost, .won {
-    font-family: 'Super Mario Bros', cursive;
+    background-color: #ffffffec;
+    background-blend-mode: multiply;
 }
 
 .sectionHeading {
     text-align: center;
-    color: rgb(243, 113, 53);
+    color: rgb(242, 136, 87);
     font-size: 3em;
-    text-shadow: 2px 2px #ff0000;
+    text-shadow: 3px 2px #ff0000;
+    padding: 0;
+    margin-bottom: 0;
 }
 
 .gameContainer {
-    border: 10px solid #ffd800;
-    margin: 0 auto;
-    width: 400px;
-    height: 400px;
-    display: grid;
-    grid-template-columns: repeat(10, 1fr);
-    position: relative;
+    margin: auto;
+    background-color: rgb(197, 211, 45);
+    border: 5px solid hsl(279, 99%, 48%);
+    box-shadow: 5px;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .gameContainer div {
-    border: 1px solid #ffd800;
-    /* background-color: #00bfff; */
-    font-size: 2em;
+    height: 40px;
+    width: 40px;
+    border: 2px solid;
+    border-color: #f3d24f ;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 1.5em;
     text-align: center;
-    width: 38px;
-    height: 38px;
-    align-self: center;
 }
-.gameContainer  .checked div {
-    background-color: #4e9bb4;
+.checked {
+    background-color: #e0e3e3;
 }
 .bomb {
-    /* background-image: url('https://www.mariowiki.com/images/thumb/2/2e/GoombaNSMBUDeluxe.png/250px-GoombaNSMBUDeluxe.png'); */
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
 }
-
 
 .result {
     text-align: center;
@@ -67,25 +71,22 @@ h1, .button, .lost, .won {
     cursor: pointer;
     margin-top: 20px;
     margin-bottom: 40px;
+    font-family: 'Super Mario Bros', cursive;
 }
 
 .lost {
-    color: rgb(255, 0, 0);
-    font-size: 34px;
-    text-shadow: 2px 2px #ffffff;
+    color: #ff0000;
+    font-size: 2em;
 }
 
 .won {
-    color: #196819;
-    font-size: 34px;
-    text-shadow: 2px 2px #ffffff;
+    color: #da3093;
+    font-size: 2em;
 }
 
 .timeOver{
-    font-family: 'Super Mario Bros', cursive;
-    color: rgb(255, 0, 0);
-    font-size: 44px;
-    text-shadow: 2px 2px #ffffff;
+    color: #ff0000;
+    font-size: 2em;
 }
 .hidden{
   
@@ -97,6 +98,7 @@ h1, .button, .lost, .won {
     color: rgb(255, 0, 0);
     font-size: 24px;
     text-shadow: 2px 2px #ffffff;
+    float: left;  
 }
 
 .luigi {
@@ -107,21 +109,18 @@ h1, .button, .lost, .won {
 .mariobro {
     float: bottom;
     width: 130px;
-
 }
 
 .score {
     font-family: 'Super Mario Bros', cursive;
 }
 
-
 #score {
-    /* background-image: url('https://www.mariowiki.com/images/thumb/9/9f/Coin_%28Mario_Party_10%29.png/200px-Coin_%28Mario_Party_10%29.png'); */
     background-size: contain;
     background-repeat: no-repeat;
     padding-left: 30px;
     font-size: 28px;
-    color: #ffd800;
+    color: #ff0000;
 }
 
 #time {
@@ -129,9 +128,6 @@ h1, .button, .lost, .won {
     font-family: 'Super Mario Bros', cursive;
     color: #ff0000;
     text-shadow: 2px 2px #f7f7f7;
-    padding-top: 30px;
-    padding-left: 20px;
-
 }
 
 .bottom-container {
@@ -139,11 +135,10 @@ h1, .button, .lost, .won {
     align-items: center;
     align-content: center;
     margin: auto;
-    /* margin-left: 200px; */
-    /* position: absolute;
-    bottom: 0;
-    left: 0;
-    margin-left: 80px; */
+    color: rgb(233, 0, 0);
+    font-size: 1.5em;
+    background-color: transparent;
+    text-shadow: 1px;
 }
 
 .bottom-container img {
@@ -163,4 +158,9 @@ h3{
     font-family: 'Super Mario Bros', cursive;
     margin-top: 20px;
     text-shadow: 2px 2px #f7f7f7;
+}
+.displayContainer{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-evenly
 }

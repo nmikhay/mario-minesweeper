@@ -7,7 +7,7 @@ let containerHeight = "400px";
 gameContainer.setAttribute("style",`width:${containerWidth} ; height:${containerHeight}`);
 
 // create board 
-// defining box number in side grid
+// defining box number in game grid
 let totalBoxes = 100;
 let rowLenght= 10;
 let boxes= [];
@@ -40,9 +40,8 @@ function createBoard(){
         boxes.push(box);
 
         box.addEventListener('click',(e)=>{
-           
             click(e.target);
-             //console.log(e) ;           
+            //console.log(e) ;           
         })
 
         box.addEventListener('contextmenu',(e)=>{
@@ -102,6 +101,7 @@ const clickSecond = (box)=>{
     else{
         let total = box.getAttribute('data') ;
         if (total!=0){
+            score++;
             box.classList.add('checked');
             box.innerHTML= total; 
             return
@@ -129,7 +129,6 @@ function gameOver(box){
             box.classList.add('checked');
         }
     }
-
 }
 
 // add Falg
