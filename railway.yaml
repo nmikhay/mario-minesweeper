@@ -1,21 +1,5 @@
-# railway.yaml
+env: node
+previewCommand: npm install
+buildCommand: npm run build
+startCommand: npm start
 
-# Choose the runtime for your project (e.g., Node.js)
-services:
-  - name: web
-    env:
-      - key: RAILWAY_RUNTIME
-        value: nodejs12
-
-# Specify the build command for your project
-builds:
-  - name: build
-    steps:
-      - run: npm install
-
-# Define the deployment command
-deployments:
-  - name: main
-    branch: master
-    command:
-      - run: node app.js
