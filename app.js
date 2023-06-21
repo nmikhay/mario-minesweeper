@@ -6,8 +6,7 @@ let containerWidth = "400px";
 let containerHeight = "400px";
 gameContainer.setAttribute("style",`width:${containerWidth} ; height:${containerHeight}`);
 
-// create board 
-// defining box number in game grid
+
 let totalBoxes = 100;
 let rowLenght= 10;
 let boxes= [];
@@ -17,75 +16,62 @@ let stopGame= false;
 let flags=0;
 let score = 0;
 
-function createBoard(){
-   
-    // creating the random calsses for bombs and empty boxes(vide/empty) to apply to boxes
-
-    const bombsArray = new Array(totalBombs).fill('bomb');
-    const emptyArray = new Array(totalBoxes-totalBombs).fill('empty');
-
-    // randomly placing empty and bombs 
-
-    //const gameArray = (bombsArray.concat(emptyArray)).sort(()=>Math.random()-0.5) ;
-
-    // another way to generate random array
-
-    const gameArray2= shuffle((bombsArray.concat(emptyArray)));  
-
-    for (let i=0; i<totalBoxes;i++){
-        let box = document.createElement("div");
-        box.setAttribute("id",i);
-        box.classList.add(gameArray2[i])
-        gameContainer.appendChild(box);
-        boxes.push(box);
-
-        box.addEventListener('click',(e)=>{
-            click(e.target);
-            //console.log(e) ;           
-        })
-
-        box.addEventListener('contextmenu',(e)=>{
-            e.preventDefault();
-            addFlag(e.target);
-        })
+function createBoard() {
+    const bombsArray = Array(totalBombs).fill('bomb');
+    const emptyArray = Array(totalBoxes - totalBombs).fill('empty');
+    const gameArray = bombsArray.concat(emptyArray);
+    const shuffledArray = shuffle(gameArray);
+  
+    for (let i = 0; i < totalBoxes; i++) {
+      let box = document.createElement("div");
+      box.setAttribute("id", i);
+      box.classList.add(shuffledArray[i]);
+      gameContainer.appendChild(box);
+      boxes.push(box);
+  
+      box.addEventListener('click', (e) => {
+        handleClick(e.target);
+      });
+  
+      box.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+        addFlag(e.target);
+      });
     }
     calculateTotal();
-}
+  }
 
 
-createBoard();
+  createBoard();
 
-const click = (box)=>{
-
+  const handleClick = (box) => {
     let currentId = box.id;
-    if (isGameOver){
-        return
+    if (isGameOver) {
+      return;
     }
-
-    if ( box.classList.contains('checked')|| box.classList.contains('flag')){
-        return
+  
+    if (box.classList.contains('checked') || box.classList.contains('flag')) {
+      return;
     }
-
-    if( box.classList.contains('bomb')){
-        isGameOver = true;
-        gameOver(box);
-        return
-        //console.log("gameover");
-    }
-    else{
-        let total = box.getAttribute('data') ;
-        if (total!=0){
-            score++;
-            const scoreElement = document.getElementById("score");
-            scoreElement.textContent = score;
-            box.classList.add('checked');
-            box.innerHTML= total; 
-            return
-        } 
-        massClick(box, currentId);
+  
+    if (box.classList.contains('bomb')) {
+      isGameOver = true;
+      gameOver(box);
+      return;
+    } else {
+      let total = box.getAttribute('data');
+      if (total != 0) {
+        score++;
+        const scoreElement = document.getElementById("score");
+        scoreElement.textContent = score;
+        box.classList.add('checked');
+        box.innerHTML = total;
+        return;
+      }
+      massClick(box, currentId);
     }
     box.classList.add('checked');
-}
+  };
 
 const clickSecond = (box)=>{
 
@@ -117,7 +103,6 @@ function gameOver(box){
     lost.classList.toggle("hidden");
     const button = document.querySelector(".button");
     button.classList.toggle("hidden");
-    // to reload the game
     button.addEventListener("click", ()=>{
         location.reload()
     })
@@ -130,8 +115,6 @@ function gameOver(box){
         }
     }
 }
-
-// add Falg
 
 function addFlag(box){
    
@@ -227,58 +210,58 @@ function massClick(box, currentId){
 
 }
 
-function calculateTotal(){
-    for (let i=0; i<boxes.length;i++){
-        let total = 0;
-        const isLeftEdge = (i % rowLenght === 0);
-        const isRightEdge = (i % rowLenght === (rowLenght-1))
-    
-        if (boxes[i].classList.contains('empty')){
-            if(i>0 && !isLeftEdge &&boxes[i-1].classList.contains('bomb')){
-                total++
-            }
-            if(i<89 && boxes[i+rowLenght].classList.contains('bomb')){
-                total++
-            }
-            if(i>10 && boxes[i-rowLenght].classList.contains('bomb')){
-                total++
-            }
-            if(i<98 && !isRightEdge && boxes[i+1].classList.contains('bomb')){
-                total++
-            }
-            if(i>11 && !isLeftEdge && boxes[i-1-rowLenght].classList.contains('bomb')){
-                total++
-            }
-            if(i<90 && isLeftEdge && boxes[i-1+rowLenght].classList.contains('bomb')){
-                total++
-            }
-            if(i<88 && !isRightEdge && boxes[i+1+rowLenght].classList.contains('bomb')){
-                total++
-            }
-            if(i>9 && !isRightEdge &&boxes[i+1-rowLenght].classList.contains('bomb')){
-                total++
-            }
-            boxes[i].setAttribute('data', total)
+function calculateTotal() {
+    for (let i = 0; i < totalBoxes; i++) {
+      let total = 0;
+      const isLeftEdge = (i % rowLength === 0);
+      const isRightEdge = (i % rowLength === (rowLength - 1));
+  
+      if (boxes[i].classList.contains('empty')) {
+        if (i > 0 && !isLeftEdge && boxes[i - 1].classList.contains('bomb')) {
+          total++;
         }
-
+        if (i > 9 && !isRightEdge && boxes[i + 1 - rowLength].classList.contains('bomb')) {
+          total++;
+        }
+        if (i > 10 && boxes[i - rowLength].classList.contains('bomb')) {
+          total++;
+        }
+        if (i > 11 && !isLeftEdge && boxes[i - 1 - rowLength].classList.contains('bomb')) {
+          total++;
+        }
+        if (i < 98 && !isRightEdge && boxes[i + 1].classList.contains('bomb')) {
+          total++;
+        }
+        if (i < 89 && isLeftEdge && boxes[i - 1 + rowLength].classList.contains('bomb')) {
+          total++;
+        }
+        if (i < 90 && !isLeftEdge && boxes[i - 1 + rowLength].classList.contains('bomb')) {
+          total++;
+        }
+        if (i < 88 && !isRightEdge && boxes[i + 1 + rowLength].classList.contains('bomb')) {
+          total++;
+        }
+        if (i < 89 && boxes[i + rowLength].classList.contains('bomb')) {
+          total++;
+        }
+        boxes[i].setAttribute('data', total);
+      }
     }
-    
-}
-
-
-//The de-facto unbiased shuffle algorithm is the Fisher-Yates (aka Knuth) Shuffle.
+  }
 
 function shuffle(array) {
     let currentIndex = array.length;
-    let randomIndex;
-      while (currentIndex != 0) {
-      // Pick a remaining element.
+    let temporaryValue, randomIndex;
+  
+    while (currentIndex !== 0) {
       randomIndex = Math.floor(Math.random() * currentIndex);
       currentIndex--;
-      // And swap it with the current element.
-      [array[currentIndex], array[randomIndex]] = [
-        array[randomIndex], array[currentIndex]];
+  
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
     }
+  
     return array;
   }
 
