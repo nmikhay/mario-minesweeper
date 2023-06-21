@@ -211,43 +211,50 @@ function massClick(box, currentId){
 }
 
 function calculateTotal() {
-    for (let i = 0; i < totalBoxes; i++) {
-      let total = 0;
-      const isLeftEdge = (i % rowLength === 0);
-      const isRightEdge = (i % rowLength === (rowLength - 1));
-  
-      if (boxes[i].classList.contains('empty')) {
-        if (i > 0 && !isLeftEdge && boxes[i - 1].classList.contains('bomb')) {
-          total++;
-        }
-        if (i > 9 && !isRightEdge && boxes[i + 1 - rowLength].classList.contains('bomb')) {
-          total++;
-        }
-        if (i > 10 && boxes[i - rowLength].classList.contains('bomb')) {
-          total++;
-        }
-        if (i > 11 && !isLeftEdge && boxes[i - 1 - rowLength].classList.contains('bomb')) {
-          total++;
-        }
-        if (i < 98 && !isRightEdge && boxes[i + 1].classList.contains('bomb')) {
-          total++;
-        }
-        if (i < 89 && isLeftEdge && boxes[i - 1 + rowLength].classList.contains('bomb')) {
-          total++;
-        }
-        if (i < 90 && !isLeftEdge && boxes[i - 1 + rowLength].classList.contains('bomb')) {
-          total++;
-        }
-        if (i < 88 && !isRightEdge && boxes[i + 1 + rowLength].classList.contains('bomb')) {
-          total++;
-        }
-        if (i < 89 && boxes[i + rowLength].classList.contains('bomb')) {
-          total++;
-        }
-        boxes[i].setAttribute('data', total);
+  for (let i = 0; i < totalBoxes; i++) {
+    let total = 0;
+    const isLeftEdge = (i % rowLenght === 0);
+    const isRightEdge = (i % rowLenght === (rowLenght - 1));
+
+    if (boxes[i].classList.contains('empty')) {
+      // Check left neighbor
+      if (i > 0 && !isLeftEdge && boxes[i - 1].classList.contains('bomb')) {
+        total++;
       }
+      // Check right neighbor
+      if (i < totalBoxes - 1 && !isRightEdge && boxes[i + 1].classList.contains('bomb')) {
+        total++;
+      }
+      // Check top neighbor
+      if (i >= rowLenght && boxes[i - rowLenght].classList.contains('bomb')) {
+        total++;
+      }
+      // Check bottom neighbor
+      if (i < totalBoxes - rowLenght && boxes[i + rowLenght].classList.contains('bomb')) {
+        total++;
+      }
+      // Check top-left neighbor
+      if (i >= rowLenght && !isLeftEdge && boxes[i - 1 - rowLenght].classList.contains('bomb')) {
+        total++;
+      }
+      // Check top-right neighbor
+      if (i >= rowLenght && !isRightEdge && boxes[i + 1 - rowLenght].classList.contains('bomb')) {
+        total++;
+      }
+      // Check bottom-left neighbor
+      if (i < totalBoxes - rowLenght && !isLeftEdge && boxes[i - 1 + rowLenght].classList.contains('bomb')) {
+        total++;
+      }
+      // Check bottom-right neighbor
+      if (i < totalBoxes - rowLenght && !isRightEdge && boxes[i + 1 + rowLenght].classList.contains('bomb')) {
+        total++;
+      }
+
+      boxes[i].setAttribute('data', total);
     }
   }
+}
+
 
 function shuffle(array) {
     let currentIndex = array.length;
