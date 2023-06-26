@@ -1,11 +1,9 @@
 
 const gameContainer = document.querySelector('.gameContainer');
 
-
 let containerWidth = "400px";
 let containerHeight = "400px";
 gameContainer.setAttribute("style",`width:${containerWidth} ; height:${containerHeight}`);
-
 
 let totalBoxes = 100;
 let rowLenght= 10;
@@ -17,32 +15,37 @@ let flags=0;
 let score = 0;
 
 function createBoard() {
-    const bombsArray = Array(totalBombs).fill('bomb');
-    const emptyArray = Array(totalBoxes - totalBombs).fill('empty');
-    const gameArray = bombsArray.concat(emptyArray);
-    const shuffledArray = shuffle(gameArray);
-  
-    for (let i = 0; i < totalBoxes; i++) {
-      let box = document.createElement("div");
-      box.setAttribute("id", i);
-      box.classList.add(shuffledArray[i]);
-      gameContainer.appendChild(box);
-      boxes.push(box);
-  
-      box.addEventListener('click', (e) => {
-        handleClick(e.target);
-      });
-  
-      box.addEventListener('contextmenu', (e) => {
-        e.preventDefault();
-        addFlag(e.target);
-      });
-    }
-    calculateTotal();
+  const bombsArray = Array(totalBombs).fill('bomb');
+  const emptyArray = Array(totalBoxes - totalBombs).fill('empty');
+  const gameArray = bombsArray.concat(emptyArray);
+  const shuffledArray = shuffle(gameArray);
+
+  for (let i = 0; i < totalBoxes; i++) {
+    let box = document.createElement("div");
+    box.setAttribute("id", i);
+    gameContainer.appendChild(box);
+    boxes.push(box);
+
+    box.addEventListener('click', (e) => {
+      handleClick(e.target);
+    });
+
+    box.addEventListener('contextmenu', (e) => {
+      e.preventDefault();
+      addFlag(e.target);
+    });
   }
 
+  calculateTotal();
 
-  createBoard();
+  for (let i = 0; i < totalBoxes; i++) {
+    if (shuffledArray[i] === 'bomb') {
+      boxes[i].classList.add('bomb');
+    }
+  }
+}
+
+createBoard();
 
   const handleClick = (box) => {
     let currentId = box.id;
@@ -135,7 +138,7 @@ function addFlag(box){
     }
 
 }
-// to check win
+
 function gameWin(){
 
     let contest = 0;
@@ -217,35 +220,35 @@ function calculateTotal() {
     const isRightEdge = (i % rowLenght === (rowLenght - 1));
 
     if (boxes[i].classList.contains('empty')) {
-      // Check left neighbor
+
       if (i > 0 && !isLeftEdge && boxes[i - 1].classList.contains('bomb')) {
         total++;
       }
-      // Check right neighbor
+
       if (i < totalBoxes - 1 && !isRightEdge && boxes[i + 1].classList.contains('bomb')) {
         total++;
       }
-      // Check top neighbor
+
       if (i >= rowLenght && boxes[i - rowLenght].classList.contains('bomb')) {
         total++;
       }
-      // Check bottom neighbor
+  
       if (i < totalBoxes - rowLenght && boxes[i + rowLenght].classList.contains('bomb')) {
         total++;
       }
-      // Check top-left neighbor
+
       if (i >= rowLenght && !isLeftEdge && boxes[i - 1 - rowLenght].classList.contains('bomb')) {
         total++;
       }
-      // Check top-right neighbor
+
       if (i >= rowLenght && !isRightEdge && boxes[i + 1 - rowLenght].classList.contains('bomb')) {
         total++;
       }
-      // Check bottom-left neighbor
+
       if (i < totalBoxes - rowLenght && !isLeftEdge && boxes[i - 1 + rowLenght].classList.contains('bomb')) {
         total++;
       }
-      // Check bottom-right neighbor
+
       if (i < totalBoxes - rowLenght && !isRightEdge && boxes[i + 1 + rowLenght].classList.contains('bomb')) {
         total++;
       }
@@ -307,7 +310,7 @@ function shuffle(array) {
   }
   
   window.onload = function () {
-    let timeout = 120; // unit: seconds
+    let timeout = 120; 
     let display = document.querySelector("#time");
     startTimer(timeout, display);
   };
